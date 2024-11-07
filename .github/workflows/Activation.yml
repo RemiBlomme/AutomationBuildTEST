@@ -28,28 +28,28 @@ jobs:
           version: 6000.0.18f1  # Specify Unity version as needed
           license: ${{ secrets.UNITY_LICENSE }}  # Use a Unity license stored in GitHub Secrets (optional)
         
-      # Optional: Create LFS file list (if you want to handle LFS assets separately)
-      - name: Create LFS file list
-        run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
+      # # Optional: Create LFS file list (if you want to handle LFS assets separately)
+      # - name: Create LFS file list
+      #   run: git lfs ls-files -l | cut -d' ' -f1 | sort > .lfs-assets-id
 
-      - name: Restore LFS cache
-        uses: actions/cache@v2
-        id: lfs-cache
-        with:
-          path: .git/lfs
-          key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
+      # - name: Restore LFS cache
+      #   uses: actions/cache@v2
+      #   id: lfs-cache
+      #   with:
+      #     path: .git/lfs
+      #     key: ${{ runner.os }}-lfs-${{ hashFiles('.lfs-assets-id') }}
 
-      - name: Git LFS Pull
-        run: |
-          git lfs pull
-          git add . 
-          git reset --hard
+      # - name: Git LFS Pull
+      #   run: |
+      #     git lfs pull
+      #     git add . 
+      #     git reset --hard
 
-      - name: Restore Library cache
-        uses: actions/cache@v2
-        with:
-          path: test-projects/test-project/Library
-          key: Library-test-project-WebGL
+      # - name: Restore Library cache
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: test-projects/test-project/Library
+      #     key: Library-test-project-WebGL
 
       # Test Unity project
       - name: Run tests
