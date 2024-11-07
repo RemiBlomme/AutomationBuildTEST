@@ -22,7 +22,7 @@ jobs:
 
       # Set up Unity
       - name: Setup Unity
-        uses: game-ci/unity-action@v2
+        uses: game-ci/unity-action@v3
         with:
           version: 6000.0.18f1  # Specify Unity version as needed
           license: ${{ secrets.UNITY_LICENSE }}  # Use a Unity license stored in GitHub Secrets (optional)
@@ -58,7 +58,7 @@ jobs:
 
       # Build Unity project
       - name: Build project
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v3
         with:
           projectPath: test-projects/test-project
           targetPlatform: WebGL
