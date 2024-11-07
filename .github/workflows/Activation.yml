@@ -1,0 +1,24 @@
+name: Unity Build
+
+on:
+  push:
+    branches:
+      - main  # Trigger on push to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup Unity
+      uses: game-ci/unity-action@v2
+      with:
+        version: 2020.3.30f1  # Specify the Unity version
+        license: ${{ secrets.UNITY_LICENSE }}  # Store Unity license key securely
+
+    - name: Build Unity Project
+      run: |
+        unity -batchmode -quit -projectPath . -buildTarget StandaloneWindows64 -executeMethod BuildScript.PerformBuild
